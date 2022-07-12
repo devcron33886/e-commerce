@@ -3,98 +3,88 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('cruds.order.title') }}
+        <h4 class="text-center text-md"> {{ $order->series->name ?? '' }}-{{ str_pad($order->order_number,5,'0',STR_PAD_LEFT) }} Details</h4>
     </div>
 
     <div class="card-body">
-        <div class="form-group">
-            <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.orders.index') }}">
-                    {{ trans('global.back_to_list') }}
-                </a>
-            </div>
-            <table class="table table-bordered table-striped">
-                <tbody>
+   
+        
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Order No 
+                    </th>
+                    <th>Client Name</th>
+                    <th>Client Mobile</th>
+                    <th>Client Address</th>
+                    <th>Payment Mode</th>
+                </tr>
+               
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        {{ $order->series->name ?? '' }}-{{ str_pad($order->order_number,5,'0',STR_PAD_LEFT) }}
+                    </td>
+                    <td>{{ $order->user->name ?? '' }}</td>
+                    <td>{{ $order->shippingAddress->mobile ?? '' }}</td>
+                    <td>{{ $order->shippingAddress->address ?? '' }}</td>
+                    <td>{{ $order->paymentMethod->name ?? '' }}</td>
+                </tr>
+            </tbody>
+            
+        </table>
+        
+        
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="text-center"> {{ $order->series->name ?? '' }}-{{ str_pad($order->order_number,5,'0',STR_PAD_LEFT) }} Items</h4>
+    </div>
+
+    <div class="card-body">
+   
+        
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Item
+                    </th>
+                    <th>Quantity</th>
+                    <th>Price/Unit</th>
+                    <th>Subtotal</th>
+                    
+                </tr>
+               
+            </thead>
+            <tbody>
+                @foreach($order->variations as $variation)
                     <tr>
-                        <th>
-                            {{ trans('cruds.order.fields.id') }}
-                        </th>
                         <td>
-                            {{ $order->id }}
+                            {{ $variation->product->name }}
                         </td>
+                        <td>{{ $variation->pivot->quantity }}</td>
+                        <td>{{ $variation->formattedPrice() ?? '' }} /  {{ $variation->type}}</td>
+                        <td>RWF {{ number_format($variation->price * $variation->pivot->quantity) }}</td>
+                        
                     </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.order.fields.order_number') }}
-                        </th>
-                        <td>
-                            {{ $order->order_number }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.order.fields.user') }}
-                        </th>
-                        <td>
-                            {{ $order->user->name ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.order.fields.shipping_address') }}
-                        </th>
-                        <td>
-                            {{ $order->shipping_address->address ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.order.fields.shipping_type') }}
-                        </th>
-                        <td>
-                            {{ $order->shipping_type->title ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.order.fields.payment_method') }}
-                        </th>
-                        <td>
-                            {{ $order->payment_method->name ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.order.fields.email') }}
-                        </th>
-                        <td>
-                            {{ $order->email }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.order.fields.subtotal') }}
-                        </th>
-                        <td>
-                            {{ $order->subtotal }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.order.fields.status') }}
-                        </th>
-                        <td>
-                            {{ App\Models\Order::STATUS_SELECT[$order->status] ?? '' }}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.orders.index') }}">
-                    {{ trans('global.back_to_list') }}
-                </a>
-            </div>
-        </div>
+                @endforeach
+
+                <tr><td colspan="3">Shipping Cost ({{ $order->shippingtype->title }})</td>
+
+                    <td>RWF {{ number_format($order->shippingtype->price) }}</td></tr>
+                    <tr><td colspan="3">Total</td>
+
+                    <td>RWF {{ number_format($order->subtotal) }}</td></tr>
+            </tbody>
+            
+        </table>
+        
+        
     </div>
 </div>
 
