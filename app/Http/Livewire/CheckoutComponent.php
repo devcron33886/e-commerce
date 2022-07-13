@@ -124,9 +124,9 @@ class CheckoutComponent extends Component
         });
 
         $basket->removeAll();
-        Notification::send($order->email, new OrderPlacedNotification($order));
+        Mail::to($order->email)->send(new OrderCreated($order));
         $users = User::whereHas('roles', function ($q) { return $q->where('title', 'Admin'); })->get();
-        Notification::send($users,new NewOrderNotification($order));
+        Notification::send($users, new NewOrderNotification($order));
         $basket->destroy();
 
         if (!auth()->user()) {

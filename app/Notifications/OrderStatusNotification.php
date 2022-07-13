@@ -16,17 +16,15 @@ class OrderStatusNotification extends Notification
      * @var string
      */
     private $status;
-    private $order;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($status, Order $order)
+    public function __construct($status)
     {
         $this->status = $status;
-        $this->order = $order;
     }
 
     /**
@@ -50,10 +48,10 @@ class OrderStatusNotification extends Notification
     {
         return (new MailMessage)
             ->subject('Order Updates')
-            ->greeting('Hello' .$this->order->user->name)
-            ->line('Your order status was changed to ' . $this->status)
+            ->greeting('Hi')
+            ->line('Your order status is ' . $this->status)
 
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->action('Login', url('/login'))
+            ->line('Thank you for shopping with us!');
     }
 }

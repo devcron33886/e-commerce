@@ -60,7 +60,7 @@ class OrderController extends Controller
 
         $payment_methods = PaymentMethod::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $order->load('user', 'shipping_address', 'shipping_type', 'payment_method');
+        $order->load('user', 'shippingType', 'shippingAddress', 'paymentMethod');
 
         return view('admin.orders.edit', compact('order', 'payment_methods', 'shipping_addresses', 'shipping_types', 'users'));
     }
