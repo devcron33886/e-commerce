@@ -67,8 +67,6 @@ class Order extends Model
     public static function boot()
     {
         parent::boot();
-        Order::observe(new OrderActionObserver());
-        
         static::creating(function ($model){
             $model->order_number=Order::where('series_id',$model->series_id)->max('order_number')+1;
         });

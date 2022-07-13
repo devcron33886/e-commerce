@@ -28,11 +28,7 @@ class Stock extends Model
         'deleted_at',
     ];
 
-    public static function boot()
-    {
-        parent::boot();
-        Stock::observe(new \App\Observers\StockActionObserver());
-    }
+
 
     public function variation()
     {

@@ -52,11 +52,6 @@ class Product extends Model implements HasMedia
         'deleted_at',
     ];
 
-    public static function boot()
-    {
-        parent::boot();
-        Product::observe(new ProductActionObserver());
-    }
 
     /**
      * @throws InvalidManipulation

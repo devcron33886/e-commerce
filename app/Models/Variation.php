@@ -47,11 +47,7 @@ class Variation extends Model implements HasMedia
         'deleted_at',
     ];
 
-    public static function boot()
-    {
-        parent::boot();
-        Variation::observe(new VariationActionObserver());
-    }
+    
 
     /**
      * @throws InvalidManipulation
