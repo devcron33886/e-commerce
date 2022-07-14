@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'E-commerce',
+    'site_title' => 'Garden of Eden Rwanda',
 ];
