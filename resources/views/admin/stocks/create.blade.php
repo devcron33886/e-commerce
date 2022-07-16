@@ -12,8 +12,8 @@
             <div class="form-group">
                 <label class="required" for="variation_id">{{ trans('cruds.stock.fields.variation') }}</label>
                 <select class="form-control select2 {{ $errors->has('variation') ? 'is-invalid' : '' }}" name="variation_id" id="variation_id" required>
-                    @foreach($variations as $id => $entry)
-                        <option value="{{ $id }}" {{ old('variation_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @foreach($variations as $variation)
+                        <option value="{{ $variation->id }}" {{ old('variation_id') == $variation->id ? 'selected' : '' }}>{{ $variation->product->name ?? '' }}</option>
                     @endforeach
                 </select>
                 @if($errors->has('variation'))

@@ -27,7 +27,9 @@ class StockController extends Controller
     {
         abort_if(Gate::denies('stock_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $variations = Variation::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $variations = Variation::with('product')
+        ->orderBy('id','DESC')
+        ->get();
 
         return view('admin.stocks.create', compact('variations'));
     }
@@ -43,7 +45,10 @@ class StockController extends Controller
     {
         abort_if(Gate::denies('stock_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $variations = Variation::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $variations = Variation::with('product')
+        ->orderBy('id','DESC')
+        ->get();
+
 
         $stock->load('variation');
 
