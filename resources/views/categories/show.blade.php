@@ -42,7 +42,9 @@
                         </a>
                     @endforeach
                 </div>
-                {{ $products->links() }}
+                <div class="py-4">
+                    {{ $products->links() }}
+                </div>
             </section>
         </div>
     </main>
