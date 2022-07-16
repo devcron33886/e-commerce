@@ -7,11 +7,11 @@
                     <div>
                         <label for="email">Email</label>
                         <x-input class="block mt-1 w-full" id="email" type="text" name="email"
-                                 wire:model.defer="accountForm.email"/>
+                            wire:model.defer="accountForm.email" />
                         @error('accountForm.email')
-                        <div class="mt-2 font-semibold text-red-600">
-                            {{ $message }}
-                        </div>
+                            <div class="mt-2 font-semibold text-red-600">
+                                {{ $message }}
+                            </div>
                         @enderror
                     </div>
                 </div>
@@ -19,12 +19,11 @@
 
             <div class="space-y-3">
                 <div class="font-semibold text-lg">Shipping</div>
-                @if($this->userShippingAddresses)
+                @if ($this->userShippingAddresses)
                     <x-select class="w-full" wire:model="userShippingAddressId">
                         <option value="">Choose pre-saved address</option>
-                        @foreach($this->userShippingAddresses as $address)
-                            <option value="{{ $address->id }}">{{$address->formattedAddress()}}</option>
-
+                        @foreach ($this->userShippingAddresses as $address)
+                            <option value="{{ $address->id }}">{{ $address->formattedAddress() }}</option>
                         @endforeach
                     </x-select>
 
@@ -34,12 +33,12 @@
                     <div>
                         <label for="address">Address</label>
                         <x-input id="address" class="block mt-1 w-full" wire:model.defer="shippingForm.address"
-                                 type="text" name="address"/>
+                            type="text" name="address" />
 
                         @error('shippingForm.address')
-                        <div class="mt-2 font-semibold text-red-600">
-                            {{ $message }}
-                        </div>
+                            <div class="mt-2 font-semibold text-red-600">
+                                {{ $message }}
+                            </div>
                         @enderror
                     </div>
 
@@ -47,21 +46,21 @@
                         <div class="col-span-1">
                             <label for="city">City</label>
                             <x-input class="block mt-1 w-full" wire:model.defer="shippingForm.city" id="city"
-                                     type="text" name="city"/>
+                                type="text" name="city" />
                             @error('shippingForm.city')
-                            <div class="mt-2 font-semibold text-red-600">
-                                {{ $message }}
-                            </div>
+                                <div class="mt-2 font-semibold text-red-600">
+                                    {{ $message }}
+                                </div>
                             @enderror
                         </div>
                         <div class="col-span-1">
                             <label for="postcode">Postal code</label>
                             <x-input class="block mt-1 w-full" wire:model.defer="shippingForm.postcode" id="postcode"
-                                     type="text" name="postcode"/>
+                                type="text" name="postcode" />
                             @error('shippingForm.postcode')
-                            <div class="mt-2 font-semibold text-red-600">
-                                {{ $message }}
-                            </div>
+                                <div class="mt-2 font-semibold text-red-600">
+                                    {{ $message }}
+                                </div>
                             @enderror
                         </div>
                     </div>
@@ -72,8 +71,8 @@
                 <div class="font-semibold text-lg">Delivery</div>
                 <div class="space-y-1">
                     <x-select class="w-full" wire:model="shippingTypeId">
-                        @foreach($shippingTypes as $shippingType)
-                            <option value="{{ $shippingType->id }}">{{$shippingType->title}}
+                        @foreach ($shippingTypes as $shippingType)
+                            <option value="{{ $shippingType->id }}">{{ $shippingType->title }}
                                 (RWF {{ number_format($shippingType->price) }})
                             </option>
                         @endforeach
@@ -84,8 +83,8 @@
                 <div class="font-semibold text-lg">Choose Payment Method</div>
                 <div class="space-y-1">
                     <x-select class="w-full" wire:model="paymentMethodId">
-                        @foreach($paymentMethods as $paymentMethod)
-                            <option value="{{ $paymentMethod->id }}">{{$paymentMethod->name}}
+                        @foreach ($paymentMethods as $paymentMethod)
+                            <option value="{{ $paymentMethod->id }}">{{ $paymentMethod->name }}
 
                             </option>
                         @endforeach
@@ -96,11 +95,25 @@
                 <div class="font-semibold text-lg">Mobile Number</div>
                 <div class="space-y-1">
                     <x-input class="block mt-1 w-full" wire:model.defer="shippingForm.mobile" id="mobile"
-                             type="text" name="mobile"/>
+                        type="text" name="mobile" />
                     @error('shippingForm.mobile')
-                    <div class="mt-2 font-semibold text-red-600">
-                        {{ $message }}
-                    </div>
+                        <div class="mt-2 font-semibold text-red-600">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+            </div>
+            <div class="space-y-3">
+                <div class="font-semibold text-lg">Additional Message </div>
+                <div class="space-y-1">
+                    <textarea rows="4"
+                        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                        wire:model.defer="accountForm.notes" id="notes" type="text" name="notes">
+                    </textarea>
+                    @error('accountForm.notes')
+                        <div class="mt-2 font-semibold text-red-600">
+                            {{ $message }}
+                        </div>
                     @enderror
                 </div>
             </div>
@@ -111,8 +124,7 @@
                 @foreach ($basket->contents() as $variation)
                     <div class="border-b py-3 flex items-start">
                         <div class="w-16 mr-4">
-                            <img src="{{ $variation->getFirstMediaUrl('default', 'thumb') }}"
-                                 class="w-16">
+                            <img src="{{ $variation->getFirstMediaUrl('default', 'thumb') }}" class="w-16">
                         </div>
 
                         <div class="space-y-2">
@@ -146,11 +158,11 @@
                 <div class="space-y-1">
                     <div class="space-y-1 flex items-center justify-between">
                         <div class="font-semibold">Subtotal</div>
-                        <h1 class="font-semibold">RWF {{number_format($basket->subTotal())}}</h1>
+                        <h1 class="font-semibold">RWF {{ number_format($basket->subTotal()) }}</h1>
                     </div>
 
                     <div class="space-y-1 flex items-center justify-between">
-                        <div class="font-semibold">Shipping ({{$this->shippingType->title}})</div>
+                        <div class="font-semibold">Shipping ({{ $this->shippingType->title }})</div>
                         <h1 class="font-semibold">RWF {{ number_format($this->shippingType->price) }}</h1>
                     </div>
 

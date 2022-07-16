@@ -17,17 +17,17 @@
                             <div>{{ $order->created_at->toDateTimeString() }}</div>
                             <div>{{ $order->paymentMethod->name }}</div>
                             <div>
-                                @if($order->status=='Placed')
+                                @if($order->status==='Placed')
                                     <span
                                         class="inline-flex items-center px-3 py-1 text-sm rounded-full font-semibold bg-yellow-500 text-white">
                                     Order Placed
                                 </span>
-                                @elseif($order->status=='Processing')
+                                @elseif($order->status==='Processing')
                                     <span
                                         class="inline-flex items-center px-3 py-1 text-sm rounded-full font-semibold bg-slate-500 text-white">
                                     Processing
                                 </span>
-                                @elseif($order->status == 'Order is on Way')
+                                @elseif($order->status === 'Order is on Way')
                                     <span
                                         class="inline-flex items-center px-3 py-1 text-sm rounded-full font-semibold bg-indigo-500 text-white">
                                     Order is on way

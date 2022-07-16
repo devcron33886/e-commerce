@@ -47,7 +47,7 @@ class NewOrderNotification extends Notification
             ->subject('New order',)
             ->greeting('Hello there is a new order need a review')
             ->line('New order by '.$this->order->user->name.' which has order number '.$this->order->id)
-            ->action('Review the order here', url('/admin/orders/{{ $this->order->id}}'))
+            ->action('Review the order here', url('/admin/orders/'.$this->order->id))
             ->line('Thank you')
             ->line(config('app.name') . ' Team');
     }

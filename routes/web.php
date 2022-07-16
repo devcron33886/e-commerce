@@ -20,7 +20,7 @@ Route::get('/contact-us',ContactUsController::class)->name('contact');
 
 Route::get('/dashboard', function (Request $request) {
     $orders=$request->user()->orders()->latest()
-            ->with('variations.product','variations.media','variations.ancestorsAndSelf','shippingtype')
+            ->with('paymentMethod','variations.product','variations.media','variations.ancestorsAndSelf','shippingtype')
             ->get();
     return view('dashboard',compact('orders'));
 })->middleware(['auth'])->name('dashboard');

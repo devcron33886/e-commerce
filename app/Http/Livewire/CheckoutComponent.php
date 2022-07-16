@@ -10,7 +10,6 @@ use App\Models\ShippingAddress;
 use App\Models\ShippingType;
 use App\Models\User;
 use App\Notifications\NewOrderNotification;
-use App\Notifications\OrderPlacedNotification;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -33,6 +32,7 @@ class CheckoutComponent extends Component
 
     public $accountForm = [
         'email' => '',
+        'notes' =>'',
     ];
 
     public $shippingForm = [
@@ -41,15 +41,18 @@ class CheckoutComponent extends Component
         'postcode' => '',
         'mobile' => '',
         'payment_method_id'=>'',
+
     ];
 
     protected $validationAttributes = [
         'accountForm.email' => 'Email address',
+        'accountForm.notes' => 'Message',
         'shippingForm.address' => 'Shipping address',
         'shippingForm.city' => 'Shipping city',
         'shippingForm.postcode' => 'Shipping postal code',
         'shippingForm.mobile' => 'Shipping mobile',
         'shippingForm.payment_method' => 'Payment method',
+
 
     ];
 
@@ -59,7 +62,8 @@ class CheckoutComponent extends Component
         'shippingForm.city.required' => 'Your :attribute is required',
         'shippingForm.postcode.required' => 'Your :attribute is required',
         'shippingForm.mobile.required' => 'Your :attribute number is required',
-        'shippingForm.payment_method.required' => 'Your :attribut is required',
+        'shippingForm.payment_method.required' => 'Your :attribute is required',
+        'accountForm.notes.required' => 'Your :attribute is required',
 
     ];
 
@@ -72,7 +76,8 @@ class CheckoutComponent extends Component
             'shippingForm.postcode' => 'required|max:255',
             'shippingForm.mobile' => 'required|max:14|string',
             'shippingTypeId' => 'required|exists:shipping_types,id',
-            'paymentMethodId' => 'required|exists:payment_methods,id'
+            'paymentMethodId' => 'required|exists:payment_methods,id',
+            'accountForm.notes' => 'required'
 
 
         ];

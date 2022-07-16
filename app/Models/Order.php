@@ -43,6 +43,7 @@ class Order extends Model
         'email',
         'subtotal',
         'status',
+        'notes',
         'created_at',
         'updated_at',
         'deleted_at',

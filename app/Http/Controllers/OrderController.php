@@ -15,7 +15,7 @@ class OrderController extends Controller
     public function __invoke(Request $request)
     {
         $orders=$request->user()->orders()->latest()
-            ->with('variations.product','variations.media','variations.ancestorsAndSelf','shippingtype')
+            ->with('paymentMethod','variations.product','variations.media','variations.ancestorsAndSelf','shippingtype')
             ->get();
         return view('orders.index',compact('orders'));
     }
