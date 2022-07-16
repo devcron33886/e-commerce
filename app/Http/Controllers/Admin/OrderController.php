@@ -52,13 +52,13 @@ class OrderController extends Controller
     {
         abort_if(Gate::denies('order_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $users = User::pluck('name', 'id');
 
-        $shipping_addresses = ShippingAddress::pluck('address', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $shipping_addresses = ShippingAddress::pluck('address', 'id');
 
-        $shipping_types = ShippingType::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $shipping_types = ShippingType::pluck('title', 'id');
 
-        $payment_methods = PaymentMethod::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $payment_methods = PaymentMethod::pluck('name', 'id');
 
         $order->load('user', 'shippingType', 'shippingAddress', 'paymentMethod');
 

@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label for="user_id">{{ trans('cruds.order.fields.user') }}</label>
-                <select class="form-control select2 {{ $errors->has('user') ? 'is-invalid' : '' }}" name="user_id" id="user_id">
+                <select class="form-control select2 {{ $errors->has('user') ? 'is-invalid' : '' }}" name="user_id" id="user_id" disabled>
                     @foreach($users as $id => $entry)
                         <option value="{{ $id }}" {{ (old('user_id') ? old('user_id') : $order->user->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                     @endforeach
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label class="required" for="shipping_address_id">{{ trans('cruds.order.fields.shipping_address') }}</label>
-                <select class="form-control select2 {{ $errors->has('shipping_address') ? 'is-invalid' : '' }}" name="shipping_address_id" id="shipping_address_id" required>
+                <select class="form-control select2 {{ $errors->has('shipping_address') ? 'is-invalid' : '' }}" name="shipping_address_id" id="shipping_address_id" required disabled>
                     @foreach($shipping_addresses as $id => $entry)
                         <option value="{{ $id }}" {{ (old('shipping_address_id') ? old('shipping_address_id') : $order->shipping_address->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                     @endforeach
@@ -44,7 +44,7 @@
             </div>
             <div class="form-group">
                 <label class="required" for="shipping_type_id">{{ trans('cruds.order.fields.shipping_type') }}</label>
-                <select class="form-control select2 {{ $errors->has('shipping_type') ? 'is-invalid' : '' }}" name="shipping_type_id" id="shipping_type_id" required>
+                <select class="form-control select2 {{ $errors->has('shipping_type') ? 'is-invalid' : '' }}" name="shipping_type_id" id="shipping_type_id" required disabled>
                     @foreach($shipping_types as $id => $entry)
                         <option value="{{ $id }}" {{ (old('shipping_type_id') ? old('shipping_type_id') : $order->shipping_type->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                     @endforeach
@@ -56,7 +56,7 @@
             </div>
             <div class="form-group">
                 <label class="required" for="payment_method_id">{{ trans('cruds.order.fields.payment_method') }}</label>
-                <select class="form-control select2 {{ $errors->has('payment_method') ? 'is-invalid' : '' }}" name="payment_method_id" id="payment_method_id" required>
+                <select class="form-control select2 {{ $errors->has('payment_method') ? 'is-invalid' : '' }}" name="payment_method_id" id="payment_method_id" required disabled>
                     @foreach($payment_methods as $id => $entry)
                         <option value="{{ $id }}" {{ (old('payment_method_id') ? old('payment_method_id') : $order->payment_method->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                     @endforeach
@@ -68,7 +68,7 @@
             </div>
             <div class="form-group">
                 <label class="required" for="email">{{ trans('cruds.order.fields.email') }}</label>
-                <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email" id="email" value="{{ old('email', $order->email) }}" required>
+                <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email" id="email" value="{{ old('email', $order->email) }}" required disabled>
                 @if($errors->has('email'))
                     <span class="text-danger">{{ $errors->first('email') }}</span>
                 @endif
@@ -76,7 +76,7 @@
             </div>
             <div class="form-group">
                 <label class="required" for="subtotal">{{ trans('cruds.order.fields.subtotal') }}</label>
-                <input class="form-control {{ $errors->has('subtotal') ? 'is-invalid' : '' }}" type="number" name="subtotal" id="subtotal" value="{{ old('subtotal', $order->subtotal) }}" step="0.01" required>
+                <input class="form-control {{ $errors->has('subtotal') ? 'is-invalid' : '' }}" type="number" name="subtotal" id="subtotal" value="{{ old('subtotal', $order->subtotal) }}" step="0.01" required disabled>
                 @if($errors->has('subtotal'))
                     <span class="text-danger">{{ $errors->first('subtotal') }}</span>
                 @endif
@@ -85,7 +85,7 @@
             <div class="form-group">
                 <label>{{ trans('cruds.order.fields.status') }}</label>
                 <select class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status">
-                    <option value disabled {{ old('status', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    <option value disabled {{ old('status', null) === null ? 'selected' : '' }}></option>
                     @foreach(App\Models\Order::STATUS_SELECT as $key => $label)
                         <option value="{{ $key }}" {{ old('status', $order->status) === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
                     @endforeach
