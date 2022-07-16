@@ -1,6 +1,6 @@
 <li class="flex py-6 sm:py-10">
     <div class="flex-shrink-0">
-        <img src="{{ $variation->getFirstMediaUrl('default','thumb300X300') }}" alt="{{ $variation->product->name }}"
+        <img src="{{ $variation->getFirstMediaUrl('default','thumb','variation_image') }}" alt="{{ $variation->product->name }}"
              class="w-24 h-24 rounded-md object-center object-cover sm:w-48 sm:h-48">
     </div>
 
