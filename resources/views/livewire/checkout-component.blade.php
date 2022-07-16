@@ -111,7 +111,7 @@
                 @foreach ($basket->contents() as $variation)
                     <div class="border-b py-3 flex items-start">
                         <div class="w-16 mr-4">
-                            <img src="{{ $variation->getFirstMediaUrl('default', 'thumb300X300') }}"
+                            <img src="{{ $variation->getFirstMediaUrl('default', 'thumb') }}"
                                  class="w-16">
                         </div>
 
