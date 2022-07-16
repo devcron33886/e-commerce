@@ -50,7 +50,7 @@
                 @foreach($products as $product)
                     <div class="relative group">
                         <div class="aspect-w-4 aspect-h-3 rounded-lg overflow-hidden bg-gray-100">
-                            <img src="{{ $product->getFirstMediaUrl() }}"
+                            <img src="{{ $product->getFirstMediaUrl('product_image') }}"
                                  alt="{{ $product->name }}"
                                  class="object-center object-cover">
                             <div class="flex items-end opacity-0 p-4 group-hover:opacity-100" aria-hidden="true">

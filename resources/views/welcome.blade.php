@@ -29,7 +29,7 @@
             @foreach ($categories as $category)
                 <a href="{{ route('category-show', $category->slug) }}"
                     class="p-6 bg-white border-b border-gray-200 space-y-4 mt-3">
-                    <img src="{{ $category->getFirstMediaUrl() }}" class="w-full">
+                    <img src="{{ $category->getFirstMediaUrl('image') }}" class="w-full">
                     <div class="space-y-1">
                         <div class="font-semibold">{{ $category->name }}</div>
 
@@ -76,9 +76,9 @@
             @foreach ($products as $product)
                 <a href="{{ route('product-show', $product->slug) }}"
                     class="p-6 bg-white border-b border-gray-200 space-y-4 mt-3">
-                    @foreach ($product->product_image as $key => $media)
-                        <img src="{{ $media->getUrl('preview') }}" class="w-full">
-                    @endforeach
+
+                    <img src="{{ $product->getFirstMediaUrl('product_image','default') }}" class="w-full">
+
                     <div class="space-y-1">
                         <div class="font-semibold">{{ $product->name }}</div>
 

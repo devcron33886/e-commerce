@@ -1,6 +1,6 @@
 <div class="lg:row-end-1 lg:col-span-4">
     <div class="aspect-w-4 aspect-h-3 rounded-lg bg-gray-100 overflow-hidden">
-        <img src="{{ $selectedImageUrl }}"
+        <img src="{{ $product->getFirstMediaUrl('product_image') }}"
              alt="{{ $product->name }}."
              class="object-center object-cover" style="width: 100%;">
     </div>

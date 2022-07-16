@@ -46,7 +46,7 @@
                     @foreach ($products as $product)
                         <a href="{{ route('product-show', $product->slug) }}"
                            class="p-6 bg-white border-b border-gray-200 space-y-4 mt-3">
-                            <img src="{{ $product->getFirstMediaUrl() }}" class="w-full">
+                            <img src="{{ $product->getFirstMediaUrl('product_image','default') }}" class="w-full">
                             <div class="space-y-1">
                                 <div class="font-semibold">{{ $product->name }}</div>
                                 <div class="font-semibold text-sm">
