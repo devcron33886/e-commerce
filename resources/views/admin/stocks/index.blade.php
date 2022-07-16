@@ -46,7 +46,7 @@
                                 {{ $stock->id ?? '' }}
                             </td>
                             <td>
-                                {{ $stock->variation->title ?? '' }}
+                                {{ $stock->variation->product->name ?? '' }}
                             </td>
                             <td>
                                 {{ $stock->amount ?? '' }}
@@ -130,7 +130,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 })
 
 </script>
