@@ -16,6 +16,6 @@ class LiveScope implements Scope
      */
     public function apply(Builder $builder, Model $model): void
     {
-        $builder->where('status',true);
+        $builder->where('status','=',1);
     }
 }

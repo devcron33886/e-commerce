@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Observers\ProductActionObserver;
+use App\Models\Scopes\LiveScope;
 use Cknow\Money\Money;
 use Cviebrock\EloquentSluggable\Sluggable;
 use DateTimeInterface;
@@ -35,6 +35,7 @@ class Product extends Model implements HasMedia
         'product_image',
     ];
 
+
     protected $dates = [
         'created_at',
         'updated_at',
@@ -52,6 +53,12 @@ class Product extends Model implements HasMedia
         'deleted_at',
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new LiveScope());
+    }
 
     /**
      * @throws InvalidManipulation
