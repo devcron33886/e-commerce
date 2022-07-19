@@ -63,7 +63,7 @@ class CheckoutComponent extends Component
         'shippingForm.postcode.required' => 'Your :attribute is required',
         'shippingForm.mobile.required' => 'Your :attribute number is required',
         'shippingForm.payment_method.required' => 'Your :attribute is required',
-        'accountForm.notes.required' => 'Your :attribute is required',
+
 
     ];
 
@@ -73,11 +73,10 @@ class CheckoutComponent extends Component
             'accountForm.email' => 'required|email|max:255|unique:users,email' . (auth()->user() ? ',' . auth()->user()->id : ''),
             'shippingForm.address' => 'required|max:255',
             'shippingForm.city' => 'required|max:255',
-            'shippingForm.postcode' => 'required|max:255',
             'shippingForm.mobile' => 'required|max:14|string',
             'shippingTypeId' => 'required|exists:shipping_types,id',
             'paymentMethodId' => 'required|exists:payment_methods,id',
-            'accountForm.notes' => 'required'
+
 
 
         ];
