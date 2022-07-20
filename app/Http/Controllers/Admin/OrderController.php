@@ -21,7 +21,7 @@ class OrderController extends Controller
     {
         abort_if(Gate::denies('order_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $orders = Order::with(['user', 'shippingType', 'shippingAddress', 'paymentMethod'])->get();
+        $orders = Order::with(['user', 'shippingType', 'shippingAddress', 'paymentMethod','series'])->get();
 
         return view('admin.orders.index', compact('orders'));
     }
@@ -76,7 +76,7 @@ class OrderController extends Controller
     {
         abort_if(Gate::denies('order_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $order->load('user', 'shippingType', 'shippingAddress', 'paymentMethod');
+        $order->load('user', 'shippingType', 'shippingAddress', 'paymentMethod','variations.product');
 
         return view('admin.orders.show', compact('order'));
     }

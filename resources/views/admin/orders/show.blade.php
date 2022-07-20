@@ -65,7 +65,7 @@
                 @foreach($order->variations as $variation)
                     <tr>
                         <td>
-                            {{ $variation->product->name }}
+                            {{ $variation->product->name ?? '' }}
                         </td>
                         <td>{{ $variation->pivot->quantity }}</td>
                         <td>{{ $variation->formattedPrice() ?? '' }} /  {{ $variation->type}}</td>
